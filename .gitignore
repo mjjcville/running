@@ -1,2 +1,5 @@
 #configuration
 **/config/running_config.cfg
+
+#python 
+**/__pycache__
