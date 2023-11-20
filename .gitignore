@@ -2,4 +2,4 @@
 **/config/running_config.cfg
 
 #python 
-**/__pycache__
+**/__pycache__/*.*
