@@ -22,7 +22,6 @@ API_TOKEN = config.get('ouraring', 'api_token')
 BASE_URL = config.get('ouraring', 'base_url')
 
 def find_sleep_data(activity_start_date: str, activity_end_date) -> dict[str, float]:
-    document_url = '{}usercollection/personal_info'.format(BASE_URL)
     params={ 
         'start_date': activity_start_date, 
         'end_date': activity_end_date 
@@ -30,25 +29,22 @@ def find_sleep_data(activity_start_date: str, activity_end_date) -> dict[str, fl
     headers = { 
         'Authorization': 'Bearer {}'.format(API_TOKEN) 
     }
-    response = requests.request('GET', document_url, headers=headers, params=params) 
-    print(response.text)
     
-    document_json = response.json()
-
-    document_id = document_json['id']
-    print (f"document_id ?",document_id)
-
-    sleep_url = '{}usercollection/daily_sleep'.format(BASE_URL)
+    sleep_range_url = '{}usercollection/daily_sleep'.format(BASE_URL)
     headers = { 
         'Authorization': 'Bearer {}'.format(API_TOKEN) 
     }
 
-    response = requests.request('GET', sleep_url, headers=headers, params=params) 
-    print(response.text)
+    response = requests.request('GET', sleep_range_url, headers=headers, params=params) 
+    sleep_range_json = response.json()
+    sleep_data_list = []
+    for sleep_data in sleep_range_json['data']:
+        sleep_url = '{}usercollection/daily_sleep/{}'.format(BASE_URL,sleep_data['id'])
+        response = requests.request('GET', sleep_url, headers=headers, params=params) 
+        sleep_data_list.append(response.json())
 
     return {
-        'data': 5.1
+        'data': sleep_data_list
     }
 
 result = find_sleep_data("2023-11-19", "2023-11-20")
-
