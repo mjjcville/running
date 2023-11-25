@@ -1,4 +1,15 @@
 #Oura Ring integration
+#Interesting data:
+#contributors:
+#   deep_sleep
+#   efficiency
+#   latency
+#   rem_sleep
+#   restfulness
+#   timing
+#   total_sleep
+#score
+#timestamp"
 
 import requests
 from configparser import ConfigParser
@@ -23,17 +34,18 @@ def find_sleep_data(activity_start_date: str, activity_end_date) -> dict[str, fl
     print(response.text)
     
     document_json = response.json()
-    breakpoint()
+
     document_id = document_json['id']
     print (f"document_id ?",document_id)
 
-    sleep_url = '{}usercollection/daily_sleep/{}'.format(BASE_URL, document_id)
+    sleep_url = '{}usercollection/daily_sleep'.format(BASE_URL)
     headers = { 
         'Authorization': 'Bearer {}'.format(API_TOKEN) 
     }
+
     response = requests.request('GET', sleep_url, headers=headers, params=params) 
     print(response.text)
-    
+
     return {
         'data': 5.1
     }

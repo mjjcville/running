@@ -16,7 +16,7 @@ def find_historical_weather(location_zip: str, activity_date: str)->dict[str, in
     response = requests.get(history_url)
 
     weather_json = response.json()
-    breakpoint()
+   
     return { 
         'low_temperature': weather_json['day']['mintemp_f'],
         'humidity': weather_json['day']['avghumidity'],
