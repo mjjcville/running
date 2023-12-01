@@ -12,6 +12,7 @@
 #timestamp"
 
 import requests
+import json
 from configparser import ConfigParser
 
 
@@ -41,11 +42,13 @@ def find_sleep_data(activity_start_date: str, activity_end_date) -> dict[str, fl
     for sleep_data in sleep_range_json['data']:
         sleep_url = '{}usercollection/sleep/{}'.format(BASE_URL,sleep_data['id'])
         response = requests.request('GET', sleep_url, headers=headers, params=params) 
+        breakpoint()
         sleep_data_list.append(response.json())
-
+        for key in response.json():
+            print(key)
     return {
         'data': sleep_data_list
     }
 
 result = find_sleep_data("2023-11-01", "2023-11-20")
-
+breakpoint()
