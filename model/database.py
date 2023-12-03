@@ -1,4 +1,7 @@
 import sqlite3
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Table
+
+
 from typing import Optional
 
 class Database:
@@ -31,4 +34,6 @@ class Database:
             return result
         except sqlite3.Error as db_error:
             raise db_error
-        
+
+
+

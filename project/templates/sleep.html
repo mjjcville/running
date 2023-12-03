@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% import "helpers/tables.html" as tables %}
+{% block title %}Sleep Data{% endblock %}
+{% block content %}
+{{ super() }}
+
+<table>
+    {{ tables.render(data) }}
+</table>
+{% endblock content %}

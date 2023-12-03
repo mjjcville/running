@@ -38,17 +38,14 @@ def find_sleep_data(activity_start_date: str, activity_end_date) -> dict[str, fl
 
     response = requests.request('GET', sleep_range_url, headers=headers, params=params) 
     sleep_range_json = response.json()
-    sleep_data_list = []
+    sleep_data_list = [('date','average hrv')]
     for sleep_data in sleep_range_json['data']:
         sleep_url = '{}usercollection/sleep/{}'.format(BASE_URL,sleep_data['id'])
         response = requests.request('GET', sleep_url, headers=headers, params=params) 
-        breakpoint()
-        sleep_data_list.append(response.json())
-        for key in response.json():
-            print(key)
-    return {
-        'data': sleep_data_list
-    }
+        sleep_json = response.json()
+        sleep_item = (sleep_json['day'], sleep_json['average_hrv'])
+        sleep_data_list.append(sleep_item)
+    print ("got the data")
+    return sleep_data_list
 
-result = find_sleep_data("2023-11-01", "2023-11-20")
-breakpoint()
+#find_sleep_data("2023-11-29","2023-12-01")

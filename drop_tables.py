@@ -1,8 +1,10 @@
-from model import database
+from deprecate_model import database
 import sqlite3
 
 tables:list[str] = [
-    'sleep_history'
+    'sleep_info',
+    'weather_info',
+    'running_info'
 ]
 
 database_name:str = "running_journal_app.db"

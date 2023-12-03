@@ -2,28 +2,13 @@ import sqlite3
 from model import database
 
 #Define Table create query strings
-create_table_sleep_sql:str = '''CREATE TABLE IF NOT EXISTS sleep_history (
+create_table_sleep_sql:str = '''CREATE TABLE IF NOT EXISTS sleep_info (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
     sleep_date TIMESTAMP,
-    deep_sleep INTEGER,
-    efficiency INTEGER,
-    rem_sleep INTEGER,
-    restfulness INTEGER,
-    timing INTEGER,
-    total_sleep INTEGER,
-    score INTEGER,
-    average_breath INTEGER,
-    average_heart_rate REAL,
     average_hrv INTEGER,
-    bedtime_start TIMESTAMP,
-    bedtime_ended TIMESTAMP,
-    latency INTEGER,
-    light_sleep_duration INTEGER,
-    lowest_heart_rate INTEGER,
     updated_at TIMESTAMP,
     created_at TIMESTAMP
 ) '''
-
 
 #Connect to the new database
 try:
