@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% import "helpers/tables.html" as tables %}
+{% block title %}Sleep Data{% endblock %}
+{% block content %}
+{{ super() }}
+<form  method = "post">
+     <input type="button" id='script' name="Update Sleep" value="Update Sleep">
+</form>
+<!-- <form action="/sleep" method="GET">
+    <fieldset>
+    <legend>Sleep Dates</legend>
+    {{ forms.render(sleep_form) }}
+    <p><input type="Submit" value="Update Sleep Data"></p>
+    </fieldset>
+</form> -->
+<p>-------------</p>
+<table>
+    {{ tables.render(data) }}
+</table>
+{% endblock content %}

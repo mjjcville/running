@@ -1,4 +1,4 @@
-from deprecate_model import database
+from model import database
 import sqlite3
 
 tables:list[str] = [
